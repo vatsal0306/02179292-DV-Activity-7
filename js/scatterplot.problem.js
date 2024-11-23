@@ -103,17 +103,9 @@ function scatter_plot(data,
     
 
     function brushStart() {
-        // if no selection already exists, remove the class
+
         if (d3.brushSelection(this)[0][0] === d3.brushSelection(this)[1][0]) {
-            ////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////
-            // Missing Part 4
-            d3.selectAll("circle").style("opacity", 0.7).classed("selected", false);
-          
-            ////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////
+
         }
     }
 
@@ -157,29 +149,24 @@ function scatter_plot(data,
         .attr("width","40")
         .attr("height","40")
         .attr("class",d=>d)
-    ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////
-    // Missing Part 5
+
 
     .on("click", function(event, d) {
         const selectedCountry = d;
 
-        // Toggle the opacity of points for the selected country
+
         d3.selectAll(`circle`).filter(function () {
             return d3.select(this).attr("fill") === color(selectedCountry);
         }).style("opacity", function () {
-            return d3.select(this).style("opacity") == 0.3 ? 0.7 : 0.3; // Toggle between faded and visible
+            return d3.select(this).style("opacity") == 0.3 ? 0.7 : 0.3;
         });
 
-        // Adjust the legend item's opacity to reflect its toggle state
+
         d3.selectAll(`rect.${selectedCountry}`).style("opacity", function () {
             return d3.select(this).style("opacity") == 0.2 ? 1 : 0.2;
         });
     });
-    ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////
+
     legends_items
         .append("text")
         .text(d=>d)
